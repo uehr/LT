@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" charset="utf-8">
+    <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+    <script src="https://kit.fontawesome.com/93db328445.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100&family=M+PLUS+1p:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/agate.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <style type="text/css">html {
+  margin: 0;
+  padding: 0;
+}
+
+#slide-num {
+    font-family: "Lato", "M PLUS 1p";
+    position: fixed;
+    margin: 0;
+    right: 1rem;
+    bottom: 2px;
+    font-size: 1.5rem;
+    text-align: center;
+    vertical-align: middle;
+    color: var(--main-dark-bg-color);
+}</style>
+    <style type="text/css">@import url('https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&family=Nerko+One&family=Noto+Serif+JP:wght@300&family=Architects+Daughter&family=M+PLUS+Rounded+1c&display=swap');
+:root {
+    --main-light-bg-color:#f4f5f7;
+    --main-dark-bg-color: #282c34;
+    --main-light-font-color: white;
+    --main-light-theme-color: #00e091;
+    --main-dark-font-color: #282c34;
+    --main-dark-theme-color: #1aac5d;
+    --align-left-lr-margin: 10vw;
+    --headline-color:#282c34;
+    --title-color: #282c34;
+    --list-color: #00e091;
+}
+
+html {
+  background-color: var(--main-dark-bg-color);
+}
+
+body {
+    text-align: center;
+    background-color: var(--main-light-bg-color);
+    font-family: "M PLUS 1p", "Noto Sans JP", sans-serif;
+}
+
+::selection {
+    background: var(--main-light-theme-color);
+    color: var(--main-light-bg-color);
+}
+
+.slide {
+    height: 100vh;
+    margin-top: 1rem;
+}
+
+.list {
+    vertical-align: top;
+    text-align: left;
+    font-size: 2rem;
+    margin: auto;
+    margin-left: var(--align-left-lr-margin);
+    margin-right: var(--align-left-lr-margin);
+}
+
+ol {
+    margin: 0;
+    padding: 0;
+}
+
+code {
+    font-size: 1rem;
+    border-radius: 3px;
+    text-align: left;
+    display: inline-block;
+    font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+}
+
+pre .with-filename {
+    padding-top: 2.5rem !important;
+}
+
+pre {
+    text-align: left;
+    position: relative;
+    margin-left: var(--align-left-lr-margin) !important;
+    margin-right: var(--align-left-lr-margin) !important;
+}
+
+pre .filename{
+    font-size: 0.8rem;
+    background-color: #707070;
+    display: inline-block;
+    position: absolute;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    padding: 0.1rem 0.5rem !important;
+    border-radius: 0 0 3px 0;
+}
+
+pre .filename+ *{
+    display: block;
+}
+
+.list-icon {
+    font-size: 80%;
+    margin-right: 1rem;
+    color: var(--list-color);
+}
+
+.dark-theme-color {
+  color: var(--main-dark-theme-color);
+}
+
+.light-theme-color {
+  color: var(--main-light-theme-color);
+}
+
+.dark-bg-color {
+  background-color: var(--main-dark-bg-color);
+}
+
+.default-font {
+  font-size: 2.5rem;
+}
+
+.large-font {
+  font-size: 3.5rem;
+}
+
+a {
+  text-decoration: none;
+}
+a {
+  position: relative;
+  display: inline-block;
+  transition: .3s;
+  color: var(--main-light-theme-color);
+}
+a::before,
+a::after {
+  position: absolute;
+  content: '';
+  width: 0;
+  height: 1px;
+  background-color: var(--main-dark-bg-color);
+  transition: .3s;
+}
+a::before {
+  top: 0;
+  left: 0;
+}
+a::after {
+  bottom: 0;
+  right: 0;
+}
+a:hover::before,
+a:hover::after {
+  width: 100%;
+}
+
+.title {
+    --headline-spacing: 0.7rem;
+    font-family: "Lato", "M PLUS 1p";
+    margin: 0.1rem;
+    display: inline-block;
+    font-size: 3rem;
+    text-align: center;
+    letter-spacing: var(--headline-spacing);
+    vertical-align: middle;
+    margin-top: 40vh;
+    padding: 0.5rem 3rem;
+    border-bottom: 0.1rem solid var(--title-color);
+    color: var(--title-color)
+}
+
+.headline {
+    --headline-spacing: 0.7rem;
+    font-family: "M PLUS 1p";
+    margin: 0.1rem;
+    display: inline-block;
+    font-size: 2.5rem;
+    text-align: center;
+    letter-spacing: var(--headline-spacing);
+    vertical-align: middle;
+    padding: 0.5rem 3rem;
+    border-bottom: 0.1rem solid var(--headline-color);
+    color: var(--headline-color);
+    margin-bottom: 4rem;
+}
+
+.headline-fontawesome {
+    font-size: 2rem;
+}
+
+.headline-image {
+    width: 0.8em;
+    margin: 0;
+    margin-right: var(--headline-spacing);
+    border-radius: 30%;
+    border: var(--main-dark-bg-color) 1px solid;
+    vertical-align: middle;
+}
+
+.large {
+    font-size: 4vw;
+    margin-left: 3vw;
+    margin-right: 3vw;
+}
+
+.middle {
+    vertical-align: middle;
+}
+
+.center {
+    text-align: center;
+}
+
+.active .blur {
+    filter: blur(10%);
+    animation-name: blur;
+    animation-duration: 3s;
+    animation-fill-mode: forwards;
+}
+
+.active .fa-rotate {
+    transform: rotate(0);
+    animation-name: fa-rotation;
+    animation-duration: 1s;
+}
+
+@keyframes blur {
+    0% {
+        filter: blur(10px);
+    }
+    100% {
+        filter: blur(0);
+    }
+}
+
+@keyframes fa-rotation {
+    0%{
+        transform:rotate(0);
+    }
+    60%{ 
+        transform:rotate(20deg); 
+    }
+    100%{ 
+        transform:rotate(0); 
+    }
+}
+
+img {
+    height: 75vmin;
+    border-radius: 20px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, .7);
+}
+
+.large-img {
+    height: 75vmin;
+    border-radius: 20px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, .7);
+}
+
+.video {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    width: 65%;
+    margin: auto;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, .7);
+}
+
+.video:before {
+    content: "";
+    display: block;
+    padding-top: 56.25% /*16:9固定*/
+}
+
+.video iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&family=Nerko+One&family=Noto+Serif+JP:wght@300&family=Architects+Daughter&family=M+PLUS+Rounded+1c&display=swap');
+
+:root {
+    --main-light-bg-color: #ebedec;
+    --main-dark-bg-color: #282c34;
+    --main-light-font-color: white;
+    --main-light-theme-color:#4c5870;
+    --main-dark-font-color: #3d3d3b;
+    --main-dark-theme-color: #a4562f;
+    --list-color: #3f5277;
+    --headline-color:#5c4638;
+    --title-color: #5c4638;
+}
+
+body {
+    background-color: #eaf2f6;
+    background-image: url('http://i.imgur.com/BiSmXaq.png'), url('http://i.imgur.com/XHuy0NJ.png'), url('http://i.imgur.com/okpRxJU.png');
+    -webkit-animation: snow 20s linear infinite;
+    -moz-animation: snow 20s linear infinite;
+    -ms-animation: snow 20s linear infinite;
+    animation: snow 20s linear infinite;
+}
+
+.slide {
+    font-family: "Architects Daughter", "M PLUS Rounded 1c", sans-serif;
+}
+
+.title {
+    font-family: "Nerko One", "M PLUS 1p";
+}
+
+.headline {
+    font-family: "Nerko One", "M PLUS 1p";
+    border-bottom: solid 0 white;
+    font-size: 3rem;
+}
+
+/* snow effect背景色変化あり */
+@-webkit-keyframes snow { 
+    0% { background-position: 0px 0px, 0px 0px, 0px 0px }
+    50% { background-color: #eaf2f6; }
+    100% {
+        background-position: 500px 1000px, 400px 400px, 300px 300px;
+        background-color: #b4cfe0;
+    }
+}
+@-moz-keyframes snow {  
+    0% { background-position: 0px 0px, 0px 0px, 0px 0px }
+    50% { background-color: #eaf2f6; }
+    100% {
+        background-position: 500px 1000px, 400px 400px, 300px 300px;
+        background-color: #b4cfe0;
+    }
+}
+@-ms-keyframes snow {  
+    0% { background-position: 0px 0px, 0px 0px, 0px 0px }
+    50% { background-color: #eaf2f6}
+    100% {
+        background-position: 500px 1000px, 400px 400px, 300px 300px;
+        background-color: #b4cfe0;
+    }
+}
+@keyframes snow {  
+    0% { background-position: 0px 0px, 0px 0px, 0px 0px }
+    50% { background-color: #eaf2f6; }
+    100% {
+        background-position: 500px 1000px, 400px 400px, 300px 300px;
+        background-color: #b4cfe0;
+    }
+}</style>
+    <script>var arg = new Object;
+var pair=location.search.substring(1).split('&');
+for(var i=0;pair[i];i++) {
+    var kv = pair[i].split('=');
+    arg[kv[0]]=kv[1];
+}
+
+$(window).on('load', async () => {
+    let active_slide_num = -1
+    const activateSlide = slide_num => {
+        setSlideNum(slide_num)
+
+        for(let idx = 0; idx < slides_top.length; idx++) {
+            active_slide_num = slide_num;
+            if(idx === slide_num) {
+                $(`#slide${idx}`).addClass("active")
+            } else deactivateSlide(idx)
+        }
+
+        console.log("activated")
+    }
+
+    $("html").append("<p id='slide-num'>#1</p>");
+
+    const deactivateSlide = slide_num => {
+        $(`#slide${slide_num}`).removeClass("active")
+    }
+
+    const moveToSlide = slide_num => {
+        let escaped_slide_num = Math.max(slide_num, 0)
+        escaped_slide_num = Math.min(escaped_slide_num, slides_top.length-1)
+        $("html,body").animate({scrollTop:$(`#slide${escaped_slide_num}`).offset().top});
+    }
+
+    const setSlideNum = slide_num => {
+        console.log("fuga")
+        $("#slide-num").animate({
+            opacity: 0.5
+        }, {
+            duration: 300,
+            complete: () => {
+                console.log(`#${slide_num}`)
+                $("#slide-num").text(`#${slide_num+1}`)
+                $("#slide-num").animate({opacity: 0.7}, {duration: 300})
+            }
+        })
+    }
+
+    const slides_top = []
+    for(let idx = 0; idx < $(".slide").length; idx++) {
+        const partation = $(".slide")[idx]
+        partation.id = `slide${idx}`;
+        const top = partation.getBoundingClientRect().top + window.pageYOffset
+        slides_top.push(top)
+    }
+
+    // ?slide=Nでスライド番号を指定可能
+    if(arg["slide"]) moveToSlide(arg["slide"]-1)
+
+    // スクロール位置を見て画面内のスライドをアクティブ化する
+    setInterval(() => {
+        let slide_pointer = 0;
+        const scroll_middle = $(window).scrollTop() + $(window).height() / 2
+
+        for(let idx = 0; idx < slides_top.length; idx++) {
+            const slide_top = slides_top[idx]
+            // console.log(`idx: ${idx}, slide-top: ${slide_top}, slide-pointer: ${slide_pointer}`)
+            if(slide_top <= scroll_middle && slide_pointer < idx) {
+                slide_pointer = idx
+            }
+            if(idx === slides_top.length-1 && active_slide_num !== slide_pointer) {
+                active_slide_num = slide_pointer
+                activateSlide(slide_pointer)
+            }
+        }
+    }, 10);
+
+    $('html').keyup(e => {
+        switch(e.which){
+            case 37: // Key ←
+                moveToSlide(active_slide_num-1)
+                break;
+            case 38: // Key ↑
+                moveToSlide(active_slide_num-1)
+                break;
+            case 39: // Key →
+                moveToSlide(active_slide_num+1)
+                break;
+            case 40: // Key ↓
+                moveToSlide(active_slide_num+1)
+                break;
+            case 13: // Enter
+                moveToSlide(active_slide_num+1)
+                break;
+        }
+    })
+})</script>
+</head>
+<body>
+    <div class="slide">
+        <h1 class="title blur" id="">あまと<i class="fab fa-slideshare"></i></h1><p class="blur" id="">by amATO</p></div><div class="slide"><h1 class="title" id="">突然ですがみなさん<i class="far fa-angry"></i></h1></div><div class="slide"><h1 class="title" id="">スライド作るのめんどない？<i class="far fa-grimace"></i></h1></div><div class="slide"><h1 class="headline" id="">なにがめんどいって</h1><ul>
+<p class="list " id=""><i class="list-icon fas fa-caret-right"></i>スライドのデザインをGUIでぽちぽち整理するのめんどくせぇ。。。<ul>
+<p class="list " id=""><i class="list-icon fas fa-caret-right"></i>→ そんな暇あったら話す内容に集中したい</p></ul>
+</p></ul>
+</div><div class="slide"><h1 class="title" id=""><strong>その悩み、解決してみせます</strong> <i class="fas fa-blind"></i></h1></div><div class="slide"><h1 class="blur title" id="">そう、 amATOならね <i class="fab fa-apple"></i></h1></div><div class="slide"><h1 class="title" id="">amATOを推させてください！！</h1><p class="" id=""><del>10分で終わるので許して...</del></p></div><div class="slide"><h1 class="headline" id="">は？<i class="far fa-eye"></i></h1><ul>
+<p class="list " id=""><i class="list-icon fas fa-caret-right"></i>amATO / あまと</p><p class="list " id=""><i class="list-icon fas fa-caret-right"></i>自作のプレゼンテーションツール</p><p class="list " id=""><i class="list-icon fas fa-caret-right"></i><u>マークダウン資料をお手軽にリッチなスライドへ</u></p></ul>
+</div><div class="slide"><h1 class="headline" id="">要は<i class="fas fa-thumbtack"></i></h1><ul>
+<p class="list " id=""><i class="list-icon fas fa-caret-right"></i><strong>マークダウンで資料を書く</strong></p><p class="list " id=""><i class="list-icon fas fa-caret-right"></i><strong>→ amATOがデザインをよろしくやってくれる</strong></p><p class="list " id=""><i class="list-icon fas fa-caret-right"></i><strong>→ 速攻でリッチなスライドが完成</strong><h1 class="" id="">...が実現できる（実はこのスライドもamATO製）</h1></p></ul>
+</div><div class="slide"><h1 class="headline" id="">こんな感じ<i class="fas fa-hand-holding fa-rotate"></i></h1><ol>
+<p class="list " id=""><i class="list-icon fas fa-caret-right"></i>マークダウンで資料を書く</p></ol>
+<pre><code class="filename language-plaintext">markdown.md</code><code class="language-markdown:markdown.md  with-filename" id=""># This is sample
+## slide1 :)
+---
+## slide2 :X
+---
+## slide3 :D</code></pre><ol start="2">
+<p class="list " id=""><i class="list-icon fas fa-caret-right"></i>amATOに渡す</p></ol>
+<pre><code class="language-bash " id="">$ amato-cli markdown.md -o artifact</code></pre><ol start="3">
+<p class="list " id=""><i class="list-icon fas fa-caret-right"></i>ブラウザで成果物(html)を開く</p></ol>
+<pre><code class="language-bash " id="">$ open artifact/markdown.html</code></pre><h2 class="" id="">...だけ</h2></div><div class="slide"><h1 class="headline" id="">なにが嬉しい？<i class="fas fa-baby"></i></h1><h1 class="" id="">勝手にスライドデザインを最適化してくれるので、</h1><h1 class="" id=""><u>プレゼン内容に集中できる</u></h1></div><div class="slide"><h1 class="headline" id="">だれ向け？<i class="fas fa-baby"></i></h1><ul>
+<p class="list " id=""><i class="list-icon fas fa-caret-right"></i>デザインに自信がない...</p><p class="list " id=""><i class="list-icon fas fa-caret-right"></i>デザインに時間をかけずさくっとプレゼン資料を作りたい</p><p class="list " id=""><i class="list-icon fas fa-caret-right"></i>好みのエディタでプレゼン資料作りたいんじゃ！！</p><p class="list " id=""><i class="list-icon fas fa-caret-right"></i>Gitでバージョン管理させてくれ...</p></ul>
+<br>
+
+<h2 class="" id="">そんな人におすすめ</h2></div><div class="slide"><h1 class="title" id="">さらに</h1></div><div class="slide"><h1 class="headline" id="">さらに① </h1><h1 class="" id="">成果物がHTMLだから、</h1><h1 class="" id=""><u>webの膨大な資産を使える</u></h1></div><div class="slide"><h1 class="headline" id="">さらに① - こんなことや...</h1><div class="video">
+    <iframe src="https://www.youtube.com/embed/Y9qlMc8fcXQ" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
+</div><div class="slide"><h1 class="headline" id="">さらに① - こんなことも...!</h1><br>
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.6804959267747!2d139.72788801555043!3d35.660242738729664!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188b771049dc33%3A0x5bfe0248594cc802!2z5YWt5pys5pyo44OS44Or44K6!5e0!3m2!1sja!2sjp!4v1607612234431!5m2!1sja!2sjp" width="65%" height="70%" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+
+</div><div class="slide"><h1 class="headline" id="">さらに① - 種明かし</h1><pre><code class="filename language-plaintext">web.md</code><code class="language-markdown:web.md  with-filename" id="">---
+# さらに① - こんなことや...<<.headline>>
+iframe src="https://www.youtube.com/embed/Y9qlMc8fcXQ" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen</iframe>
+
+---
+# さらに① - こんなことも...!<<.headline>>
+iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.6804959267747!2d139.72788801555043!3d35.660242738729664!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188b771049dc33%3A0x5bfe0248594cc802!2z5YWt5pys5pyo44OS44Or44K6!5e0!3m2!1sja!2sjp!4v1607612234431!5m2!1sja!2sjp" width="65%" height="70%" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"</iframe></code></pre><br>
+
+<h2 class="" id=""><u>各種サービスの埋め込みタグが使える</u></h2></div><div class="slide"><h1 class="headline" id="">さらに②</h1><h1 class="" id="">飽き性のための、カスタムスタイル</h1><h3 class="" id="">( <del>そろそろお題回収します</del> )</h3></div><div class="slide"><h1 class="title blur" id="">あまと<i class="fab fa-canadian-maple-leaf"></i></h1><h2 class="blur" id="">style: aki</h2></div><div class="slide"><h1 class="title blur" id="">あまと<i class="fas fa-snowman"></i></h1><h2 class="blur" id="">style: fuyu</h2></div><div class="slide"><h1 class="headline" id="">さらに② - 種明かし</h1><h1 class="" id="">秋スタイル <i class="fab fa-canadian-maple-leaf"></i></h1><pre><code class="language-bash " id="">$ amato-cli main.md --style aki</code></pre><br>
+
+<h1 class="" id="">冬スタイル <i class="fas fa-snowman"></i></h1><pre><code class="language-bash " id="">$ amato-cli main.md --style fuyu</code></pre><br>
+
+<h2 class="" id=""><u>Oneコマンドでデザインテンプレートを切り替え</u></h2></div><div class="slide"><h1 class="headline" id="">さらに③ - <i class="fab fa-npm"></i></h1><h1 class="" id="">npm installであなたもすぐ使えます！！！！</h1><pre><code class="language-bash " id="">$ npm install amato-cli -g</code></pre></div><div class="slide"><h1 class="headline" id="">さらに③</h1><h1 class="" id=""><strong>Let&#39;s enjoy amATO life!!</strong></h1></div><div class="slide"><h1 class="headline" id="">まとめ</h1><ul>
+<p class="list " id=""><i class="list-icon fas fa-caret-right"></i><strong>amATO</strong> / <strong>あまと</strong></p><p class="list " id=""><i class="list-icon fas fa-caret-right"></i>マークダウン資料をお手軽にリッチなスライドへ<ul>
+<p class="list " id=""><i class="list-icon fas fa-caret-right"></i>プレゼン内容にだけ集中できる</p></ul>
+</p><p class="list " id=""><i class="list-icon fas fa-caret-right"></i>さらに<ul>
+<p class="list " id=""><i class="list-icon fas fa-caret-right"></i>各種サービスの埋め込みタグが使える</p><p class="list " id=""><i class="list-icon fas fa-caret-right"></i>Oneコマンドでデザインテンプレートを切り替え</p><p class="list " id=""><i class="list-icon fas fa-caret-right"></i>npm installであなたもすぐ使える！！！！</p></ul>
+</p><p class="list " id=""><i class="list-icon fas fa-caret-right"></i>Repository: <a href="https://github.com/uehr/amato-cli">github/amato-cli</a></p></ul>
+<br>
+
+<h2 class="" id="">以上、布教でした。</h2>
+    </div>
+</body>
+</html>
